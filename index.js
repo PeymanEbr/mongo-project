@@ -59,4 +59,11 @@ async function updateUser(id){
 
 }
 
-updateUser("63a57463b0806d8def32976b");
+// updateUser("63a57463b0806d8def32976b");
+
+async function removeUser(id){
+    const user = await User.findByIdAndRemove(id);
+    console.log(user);
+}
+
+removeUser("63a57463b0806d8def32976b");

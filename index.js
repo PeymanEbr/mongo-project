@@ -11,3 +11,20 @@ const userScema = new mongoose.Schema({
     data: {type: Date, default: Date.now},
     admin: Boolean,
 });
+
+const User = mongoose.model('User',userScema);
+
+async function createUser(){
+    
+const user = new User({
+    first_name: 'yashar',
+    last_name: 'salimi',
+    favorites: ['programmin','money', 'swimming'],
+    admin: false,
+});
+
+const result = await user.save();
+console.log(result);
+}
+
+createUser();

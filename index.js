@@ -27,4 +27,14 @@ const result = await user.save();
 console.log(result);
 }
 
-createUser();
+// createUser();
+
+async function getUsers(){
+   const users = await User.find({first_name: 'payman'})
+    .limit(5)
+    .sort({first_name: -1})
+    .select({first_name:1,last_name:1}).count();
+   console.log(users);
+}
+
+getUsers();

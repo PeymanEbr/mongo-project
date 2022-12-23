@@ -37,20 +37,26 @@ async function getUsers(){
 // getUsers();
 
 async function updateUser(id){
-    const user =  await User.findById(id);
+    const result =  await User.findByIdAndUpdate(id,{
+        $set:{
+            first_name: 'updated name 4'
+        }
+    },{new: true});
     // const user1 = await User.findOne({_id: id});
     // const user2 = await User.find({_id: id});
-    if(!user) return;
-    user.admin = true;
-    user.first_name = "updated name";
+    // if(!user) return;
+    // user.admin = true;
+    // user.first_name = "updated name";
 
-    user.set({
-        first_name : 'updated name',
-        admin: true
-    })
+    // user.set({
+    //     first_name : 'updated name',
+    //     admin: true
+    // })
 
-    const result = await user.save();
+    // const result = await user.save();
     console.log(result);
+
+
 }
 
 updateUser("63a57463b0806d8def32976b");

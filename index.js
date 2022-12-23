@@ -30,12 +30,27 @@ console.log(result);
 // createUser();
 
 async function getUsers(){
-    const pageNumber = 1;
-    const pageSize = 8;
-   const users = await (await User.find()).and([{first_name:"payman"},{admin: true}])
-   .skip((pageNumber - 1) * pageSize)
-   .limit(pageSize)
+   const users = await User.find();
    console.log(users);
 }
 
-getUsers();
+// getUsers();
+
+async function updateUser(id){
+    const user =  await User.findById(id);
+    // const user1 = await User.findOne({_id: id});
+    // const user2 = await User.find({_id: id});
+    if(!user) return;
+    user.admin = true;
+    user.first_name = "updated name";
+
+    user.set({
+        first_name : 'updated name',
+        admin: true
+    })
+
+    const result = await user.save();
+    console.log(result);
+}
+
+updateUser("63a57463b0806d8def32976b");

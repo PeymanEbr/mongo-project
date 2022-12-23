@@ -23,8 +23,13 @@ const user = new User({
     admin: false,
 });
 
-const result = await user.save();
-console.log(result);
+try{
+    const result = await user.save();
+    console.log(result);
+}catch(ex) {
+    console.log(ex.message);
+}
+
 }
 
 // createUser();

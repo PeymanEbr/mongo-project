@@ -5,7 +5,8 @@ mongoose.connect('mongodb://localhost:27017/mongoproject')
 .catch((err) => {'could not connect to mongodb'});
 
 const userScema = new mongoose.Schema({
-    first_name: {type: String , minLength: 3, maxLength: 20},
+    first_name: {type: String , minLength: 3, maxLength: 20, lowercase: true},
+    salary: {type:String, required: true, set: v=> Math.round(v),get: v=> Math.round(v)},
     last_name: {type: String, required: true},
     age: {type: Number, min: 8, max: 120},
     favorites: {type: [String],validate :{
@@ -27,9 +28,10 @@ const User = mongoose.model('User',userScema);
 async function createUser(){
     
 const user = new User({
-    first_name: 'yashar',
+    first_name: 'farhad',
+    salary: 14.6,
     last_name: 'salimi',
-    // favorites: ['programmin','money', 'swimming'],
+    favorites: ['programming'],
     admin: false,
 });
 
@@ -42,7 +44,7 @@ try{
 
 }
 
-createUser();
+// createUser();
 
 async function getUsers(){
    const users = await User.find();

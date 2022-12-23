@@ -5,9 +5,14 @@ mongoose.connect('mongodb://localhost:27017/mongoproject')
 .catch((err) => {'could not connect to mongodb'});
 
 const userScema = new mongoose.Schema({
-    first_name: String,
+    first_name: {type: String , minLength: 3, maxLength: 20},
     last_name: {type: String, required: true},
-    favorites: [String],
+    age: {type: Number, min: 8, max: 120},
+    favorites: {type: [String], enum: [
+        "sport",
+        "data science",
+        "programming"
+    ]},
     data: {type: Date, default: Date.now},
     admin: Boolean,
 });

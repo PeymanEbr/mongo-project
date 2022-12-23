@@ -8,7 +8,12 @@ const userScema = new mongoose.Schema({
     first_name: {type: String , minLength: 3, maxLength: 20},
     last_name: {type: String, required: true},
     age: {type: Number, min: 8, max: 120},
-    favorites: {type: [String], enum: [
+    favorites: {type: [String],validate :{
+        validator: function(v){
+            return v && v.length>0;
+        },
+        message: 'favorite field should have at least one item'
+    }, enum: [
         "sport",
         "data science",
         "programming"
@@ -24,7 +29,7 @@ async function createUser(){
 const user = new User({
     first_name: 'yashar',
     last_name: 'salimi',
-    favorites: ['programmin','money', 'swimming'],
+    // favorites: ['programmin','money', 'swimming'],
     admin: false,
 });
 
@@ -37,7 +42,7 @@ try{
 
 }
 
-// createUser();
+createUser();
 
 async function getUsers(){
    const users = await User.find();
@@ -76,4 +81,4 @@ async function removeUser(id){
     console.log(user);
 }
 
-removeUser("63a57463b0806d8def32976b");
+// removeUser("63a57463b0806d8def32976b");

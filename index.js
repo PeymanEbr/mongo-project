@@ -30,10 +30,11 @@ console.log(result);
 // createUser();
 
 async function getUsers(){
-   const users = await User.find({first_name: 'payman'})
-    .limit(5)
-    .sort({first_name: -1})
-    .select({first_name:1,last_name:1}).count();
+    const pageNumber = 1;
+    const pageSize = 8;
+   const users = await (await User.find()).and([{first_name:"payman"},{admin: true}])
+   .skip((pageNumber - 1) * pageSize)
+   .limit(pageSize)
    console.log(users);
 }
 

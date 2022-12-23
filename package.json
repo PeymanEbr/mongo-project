@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/PeymanEbr/mongo-project/issues"
   },
-  "homepage": "https://github.com/PeymanEbr/mongo-project#readme"
+  "homepage": "https://github.com/PeymanEbr/mongo-project#readme",
+  "dependencies": {
+    "mongoose": "^6.8.1"
+  }
 }
